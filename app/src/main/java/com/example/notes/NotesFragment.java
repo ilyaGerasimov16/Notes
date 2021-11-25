@@ -56,7 +56,6 @@ public class NotesFragment extends Fragment {
         return root;
     }
 
-    // Этот метод вызывается, когда макет экрана создан и готов к отображению информации. Создаем список городов
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,6 +73,4 @@ public class NotesFragment extends Fragment {
             layoutView.addView(tvNoteName);
         }
     }
-
-
 }
