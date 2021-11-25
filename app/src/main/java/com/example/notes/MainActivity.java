@@ -18,12 +18,11 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.noteDescriptionFragment_container,
                             NoteDescriptionFragment.newInstance(0))
                     .commit();
-        } else {
-            NotesFragment notesFragment = new NotesFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, notesFragment)
-                    .commit();
         }
+        NotesFragment notesFragment = new NotesFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, notesFragment)
+                .commit();
     }
 }
