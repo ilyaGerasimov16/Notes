@@ -54,6 +54,10 @@ public class NoteDescriptionFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_PARAM1);
         }
+        if(savedInstanceState != null) {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        }
+
     }
 
     @Override
