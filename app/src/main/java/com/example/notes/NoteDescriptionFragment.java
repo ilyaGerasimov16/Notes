@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +20,7 @@ public class NoteDescriptionFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "index";
+    static final String ARG_PARAM1 = "index";
 
 
     // TODO: Rename and change types of parameters
@@ -54,10 +52,6 @@ public class NoteDescriptionFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_PARAM1);
         }
-        if(savedInstanceState != null) {
-            requireActivity().getSupportFragmentManager().popBackStack();
-        }
-
     }
 
     @Override

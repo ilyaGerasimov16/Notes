@@ -1,5 +1,9 @@
 package com.example.notes;
 
+import static com.example.notes.NoteDescriptionFragment.ARG_PARAM1;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -88,13 +92,11 @@ public class NotesFragment extends Fragment {
     }
 
     private void showPortNote(int position) {
-        NoteDescriptionFragment noteDescriptionFragment =
-                NoteDescriptionFragment.newInstance(position);
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.fragment_container ,noteDescriptionFragment);
-        transaction.addToBackStack("");
-        transaction.commit();
+
+        Activity activity = requireActivity();
+        Intent intent = new Intent(activity, NoteDescriptionActivity.class);
+        intent.putExtra(ARG_PARAM1, position);
+        activity.startActivity(intent);
     }
 
     @Override
