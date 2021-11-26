@@ -18,6 +18,9 @@ import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
 
+    private static final String CURRENT_Note = "CurrentNote";
+    private int currentPosition = 0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +33,23 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
+        if (savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt(CURRENT_Note,0);
+        }
         initList(view);
+
+        if (isLandscape()) {
+            showLandNote(currentPosition);
+        }
+
+    }
+
+    private boolean isLandscape() {
+        return getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     private void initList(View view) {
@@ -45,13 +64,14 @@ public class NotesFragment extends Fragment {
             layoutView.addView(tvNoteName);
             final int position = i;
             tvNoteName.setOnClickListener(v -> {
+                currentPosition = position;
                 showNote(position);
             });
         }
     }
 
     private void showNote(int position) {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape()) {
             showLandNote(position);
         } else {
             showPortNote(position);
@@ -75,5 +95,11 @@ public class NotesFragment extends Fragment {
         transaction.add(R.id.fragment_container ,noteDescriptionFragment);
         transaction.addToBackStack("");
         transaction.commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(CURRENT_Note, currentPosition);
+        super.onSaveInstanceState(outState);
     }
 }
