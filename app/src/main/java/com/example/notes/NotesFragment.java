@@ -45,16 +45,12 @@ public class NotesFragment extends Fragment {
         }
         initList(view);
 
-        if (isLandscape()) {
+        if (Utils.isLandscape(getResources())) {
             showLandNote(currentPosition);
         }
 
     }
 
-    private boolean isLandscape() {
-        return getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE;
-    }
 
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
@@ -75,7 +71,7 @@ public class NotesFragment extends Fragment {
     }
 
     private void showNote(int position) {
-        if (isLandscape()) {
+        if (Utils.isLandscape(getResources())) {
             showLandNote(position);
         } else {
             showPortNote(position);
