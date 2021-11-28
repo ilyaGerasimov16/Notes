@@ -21,10 +21,6 @@ import android.widget.TextView;
 
 public class NotesFragment extends Fragment {
 
-    private static final String CURRENT_Note = "CurrentNote";
-    private Note currentNote = null;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,16 +32,7 @@ public class NotesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-        if (savedInstanceState != null) {
-            currentNote = (Note) savedInstanceState.getParcelable(CURRENT_Note);
-        }
         initList(view);
-
-        if (Utils.isLandscape(getResources())) {
-            showLandNote(currentNote);
-        }
 
     }
 
@@ -62,40 +49,15 @@ public class NotesFragment extends Fragment {
             layoutView.addView(tvNoteName);
             final int position = i;
             tvNoteName.setOnClickListener(v -> {
-                currentNote = new Note(position, noteName);
-                showNote(currentNote);
+                Note currentNote = new Note(position, noteName);
+                showPortNote(currentNote);
             });
         }
     }
 
-    private void showNote(Note note) {
-        if (Utils.isLandscape(getResources())) {
-            showLandNote(note);
-        } else {
-            showPortNote(note);
-        }
-    }
-
-    private void showLandNote(Note note) {
-        NoteDescriptionFragment noteDescriptionFragment =
-                NoteDescriptionFragment.newInstance(note);
+    private void showPortNote(Note note) {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.noteDescriptionFragment_container, noteDescriptionFragment);
-        transaction.commit();
-    }
-
-    private void showPortNote(Note note) {
-
-        Activity activity = requireActivity();
-        Intent intent = new Intent(activity, NoteDescriptionActivity.class);
-        intent.putExtra(ARG_PARAM1, note);
-        activity.startActivity(intent);
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelable(CURRENT_Note, currentNote);
-        super.onSaveInstanceState(outState);
+        transaction.add(R.id.fragment_container, NoteDescriptionFragment.newInstance(note)).commit();
     }
 }

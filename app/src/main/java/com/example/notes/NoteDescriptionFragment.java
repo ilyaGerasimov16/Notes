@@ -74,12 +74,5 @@ public class NoteDescriptionFragment extends Fragment {
         EditText editName = view.findViewById(R.id.Name);
         editName.setText(note.getNoteName());
 
-        /*EditText editDescription = view.findViewById(R.id.description);
-        editDescription.setText(note.getDescription());
-
-        EditText editDate = view.findViewById(R.id.date);
-        editDate.setText(note.getDate());
-
-*/
     }
 }
