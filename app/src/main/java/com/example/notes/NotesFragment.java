@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class NotesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initList(view);
-
+        Log.d("Fragment Notes", "Start");
     }
 
 
@@ -61,5 +62,11 @@ public class NotesFragment extends Fragment {
         transaction.add(R.id.fragment_container, NoteDescriptionFragment.newInstance(note))
                 .addToBackStack("")
                 .commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("Fragment Notes", "Finish");
     }
 }
