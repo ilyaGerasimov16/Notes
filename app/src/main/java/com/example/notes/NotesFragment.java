@@ -4,7 +4,6 @@ import static com.example.notes.NoteDescriptionFragment.ARG_PARAM1;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,15 +22,14 @@ import android.widget.TextView;
 public class NotesFragment extends Fragment {
 
     private static final String CURRENT_Note = "CurrentNote";
-    private int currentPosition = 0;
+    private Note currentNote = null;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_notes, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
     @Override
@@ -41,12 +39,12 @@ public class NotesFragment extends Fragment {
 
 
         if (savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(CURRENT_Note,0);
+            currentNote = (Note) savedInstanceState.getSerializable(CURRENT_Note);
         }
         initList(view);
 
         if (Utils.isLandscape(getResources())) {
-            showLandNote(currentPosition);
+            showLandNote(currentNote);
         }
 
     }
@@ -57,47 +55,47 @@ public class NotesFragment extends Fragment {
         String[] notes = getResources().getStringArray(R.array.notes);
 
         for (int i = 0; i< notes.length; i++) {
-            String note = notes[i];
+            String noteName = notes[i];
             TextView tvNoteName = new TextView(getContext());
-            tvNoteName.setText(note);
+            tvNoteName.setText(noteName);
             tvNoteName.setTextSize(30);
             layoutView.addView(tvNoteName);
             final int position = i;
             tvNoteName.setOnClickListener(v -> {
-                currentPosition = position;
-                showNote(position);
+                currentNote = new Note(position, noteName);
+                showNote(currentNote);
             });
         }
     }
 
-    private void showNote(int position) {
+    private void showNote(Note note) {
         if (Utils.isLandscape(getResources())) {
-            showLandNote(position);
+            showLandNote(note);
         } else {
-            showPortNote(position);
+            showPortNote(note);
         }
     }
 
-    private void showLandNote(int position) {
+    private void showLandNote(Note note) {
         NoteDescriptionFragment noteDescriptionFragment =
-                NoteDescriptionFragment.newInstance(position);
+                NoteDescriptionFragment.newInstance(note);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.noteDescriptionFragment_container, noteDescriptionFragment);
         transaction.commit();
     }
 
-    private void showPortNote(int position) {
+    private void showPortNote(Note note) {
 
         Activity activity = requireActivity();
         Intent intent = new Intent(activity, NoteDescriptionActivity.class);
-        intent.putExtra(ARG_PARAM1, position);
+        intent.putExtra(ARG_PARAM1, note);
         activity.startActivity(intent);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CURRENT_Note, currentPosition);
+        outState.putSerializable(CURRENT_Note, currentNote);
         super.onSaveInstanceState(outState);
     }
 }

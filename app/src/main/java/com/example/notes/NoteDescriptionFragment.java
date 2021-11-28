@@ -24,7 +24,7 @@ public class NoteDescriptionFragment extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private int index;
+    private Note note;
 
     public NoteDescriptionFragment() {
         // Required empty public constructor
@@ -34,14 +34,14 @@ public class NoteDescriptionFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param index Parameter 1.
+     * @param note Parameter 1.
      * @return A new instance of fragment NoteDescriptionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoteDescriptionFragment newInstance(int index) {
+    public static NoteDescriptionFragment newInstance(Note note) {
         NoteDescriptionFragment fragment = new NoteDescriptionFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, index);
+        args.putSerializable(ARG_PARAM1, note);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +50,7 @@ public class NoteDescriptionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_PARAM1);
+            note = (Note) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -66,11 +66,20 @@ public class NoteDescriptionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (note == null) {
+            return;
+        }
 
-        String[] notes = getResources().getStringArray(R.array.notes);
+
         EditText editName = view.findViewById(R.id.Name);
-        editName.setText(notes[index]);
+        editName.setText(note.getNoteName());
 
+        /*EditText editDescription = view.findViewById(R.id.description);
+        editDescription.setText(note.getDescription());
 
+        EditText editDate = view.findViewById(R.id.date);
+        editDate.setText(note.getDate());
+
+*/
     }
 }
