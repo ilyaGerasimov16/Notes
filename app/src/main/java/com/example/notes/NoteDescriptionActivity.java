@@ -4,7 +4,6 @@ import static com.example.notes.NoteDescriptionFragment.ARG_PARAM1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 public class NoteDescriptionActivity extends AppCompatActivity {

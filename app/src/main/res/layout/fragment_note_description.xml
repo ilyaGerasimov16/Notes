@@ -15,28 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_margin="10sp"
+        android:layout_margin="@dimen/note_field_margin"
         android:background="@color/purple_200"
         android:text="@string/name"
-        android:textSize="35sp" />
+        android:textSize="@dimen/note_name_text_size" />
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="10"
-        android:layout_margin="10sp"
+        android:layout_margin="@dimen/note_field_margin"
         android:background="@color/design_default_color_surface"
         android:text="@string/description"
-        android:textSize="35sp"/>
+        android:textSize="@dimen/note_description_text_size"/>
 
     <EditText
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_margin="10sp"
+        android:layout_margin="@dimen/note_field_margin"
         android:background="@color/design_default_color_secondary"
         android:text="@string/date"
-        android:textSize="35sp"/>
+        android:textSize="@dimen/note_date_text_size"/>
 
 </LinearLayout>
