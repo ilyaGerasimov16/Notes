@@ -39,7 +39,7 @@ public class NotesFragment extends Fragment {
 
 
         if (savedInstanceState != null) {
-            currentNote = (Note) savedInstanceState.getSerializable(CURRENT_Note);
+            currentNote = (Note) savedInstanceState.getParcelable(CURRENT_Note);
         }
         initList(view);
 
@@ -95,7 +95,7 @@ public class NotesFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putSerializable(CURRENT_Note, currentNote);
+        outState.putParcelable(CURRENT_Note, currentNote);
         super.onSaveInstanceState(outState);
     }
 }

@@ -41,7 +41,7 @@ public class NoteDescriptionFragment extends Fragment {
     public static NoteDescriptionFragment newInstance(Note note) {
         NoteDescriptionFragment fragment = new NoteDescriptionFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, note);
+        args.putParcelable(ARG_PARAM1, note);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +50,7 @@ public class NoteDescriptionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            note = (Note) getArguments().getSerializable(ARG_PARAM1);
+            note = (Note) getArguments().getParcelable(ARG_PARAM1);
         }
     }
 

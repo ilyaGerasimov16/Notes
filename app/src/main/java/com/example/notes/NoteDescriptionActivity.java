@@ -19,7 +19,7 @@ public class NoteDescriptionActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null){
-            Note note = (Note) getIntent().getExtras().getSerializable(ARG_PARAM1);
+            Note note = (Note) getIntent().getExtras().getParcelable(ARG_PARAM1);
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.note_description_fragment_container, NoteDescriptionFragment.newInstance(note))
