@@ -28,7 +28,6 @@
     <FrameLayout
         android:id="@+id/note_description_child_container"
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/note_field_margin"/>
 

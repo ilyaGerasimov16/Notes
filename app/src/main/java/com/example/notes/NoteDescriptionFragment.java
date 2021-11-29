@@ -77,6 +77,7 @@ public class NoteDescriptionFragment extends Fragment {
 
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.note_description_child_container, NoteDescriptionChildFragment.newInstance(note))
+                .addToBackStack("")
                 .commit();
 
         Button buttonBack = view.findViewById(R.id.note_description_button_back);

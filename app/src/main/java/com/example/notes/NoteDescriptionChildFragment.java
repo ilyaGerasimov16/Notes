@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,5 +55,18 @@ public class NoteDescriptionChildFragment extends Fragment {
             EditText editName = view.findViewById(R.id.Name);
             editName.setText(note.getNoteName());
         }
+
+        view.findViewById(R.id.note_description_child_button_back_button)
+                .setOnClickListener(v -> {
+                    getParentFragmentManager().popBackStack();
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                });
+        Log.d("Fragment ChildNoteDescription", "Start");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("Fragment ChildNoteDescription", "Finish");
     }
 }
