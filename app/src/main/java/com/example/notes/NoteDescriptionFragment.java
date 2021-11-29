@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -74,6 +75,11 @@ public class NoteDescriptionFragment extends Fragment {
 
         EditText editName = view.findViewById(R.id.Name);
         editName.setText(note.getNoteName());
+
+        Button buttonBack = view.findViewById(R.id.note_description_button_back);
+        buttonBack.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
 
         Log.d("Fragment NoteDescription", "Start");
     }

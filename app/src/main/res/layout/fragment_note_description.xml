@@ -10,6 +10,14 @@
     tools:context=".NoteDescriptionFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/note_description_button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:textSize="@dimen/note_name_text_size" />
+
     <EditText
         android:id="@+id/Name"
         android:layout_width="match_parent"
@@ -38,5 +46,6 @@
         android:background="@color/design_default_color_secondary"
         android:text="@string/date"
         android:textSize="@dimen/note_date_text_size"/>
+
 
 </LinearLayout>
