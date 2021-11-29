@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,13 +75,23 @@ public class NoteDescriptionFragment extends Fragment {
             return;
         }
 
-
-        EditText editName = view.findViewById(R.id.Name);
-        editName.setText(note.getNoteName());
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.note_description_child_container, NoteDescriptionChildFragment.newInstance(note))
+                .commit();
 
         Button buttonBack = view.findViewById(R.id.note_description_button_back);
         buttonBack.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager().popBackStack();
+        });
+
+        view.findViewById(R.id.note_description_button_remove).setOnClickListener(v -> {
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+            List<Fragment> fragments = fragmentManager.getFragments();
+            for (Fragment fragment: fragments) {
+                if (fragment instanceof NoteDescriptionFragment && fragment.isVisible()) {
+                    fragmentManager.beginTransaction().remove(fragment).commit();
+                }
+            }
         });
 
         Log.d("Fragment NoteDescription", "Start");

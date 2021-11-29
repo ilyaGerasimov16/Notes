@@ -15,18 +15,23 @@
         android:id="@+id/note_description_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Назад"
+        android:text="Back"
         android:textSize="@dimen/note_name_text_size" />
 
-    <EditText
-        android:id="@+id/Name"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/note_description_button_remove"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="@dimen/note_field_margin"
-        android:background="@color/purple_200"
-        android:text="@string/name"
+        android:text="Remove"
         android:textSize="@dimen/note_name_text_size" />
+
+    <FrameLayout
+        android:id="@+id/note_description_child_container"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/note_field_margin"/>
+
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
