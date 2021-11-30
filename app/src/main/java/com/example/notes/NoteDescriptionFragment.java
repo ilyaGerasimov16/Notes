@@ -75,15 +75,13 @@ public class NoteDescriptionFragment extends Fragment {
             return;
         }
 
-        getChildFragmentManager().beginTransaction()
-                .replace(R.id.note_description_child_container, NoteDescriptionChildFragment.newInstance(note))
-                .addToBackStack("")
-                .commit();
-
         Button buttonBack = view.findViewById(R.id.note_description_button_back);
         buttonBack.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager().popBackStack();
         });
+
+        EditText editName = view.findViewById(R.id.Name);
+        editName.setText(note.getNoteName());
 
     }
 }
