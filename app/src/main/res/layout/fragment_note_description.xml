@@ -18,13 +18,6 @@
         android:text="Back"
         android:textSize="@dimen/note_name_text_size" />
 
-    <Button
-        android:id="@+id/note_description_button_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remove"
-        android:textSize="@dimen/note_name_text_size" />
-
     <FrameLayout
         android:id="@+id/note_description_child_container"
         android:layout_width="match_parent"

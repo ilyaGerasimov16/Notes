@@ -18,14 +18,6 @@
         android:text="@string/name"
         android:textSize="@dimen/note_name_text_size" />
 
-    <Button
-        android:id="@+id/note_description_child_button_back_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/note_name_text_size"
-        android:text="Назад" />
-
-
 </LinearLayout>
 
 

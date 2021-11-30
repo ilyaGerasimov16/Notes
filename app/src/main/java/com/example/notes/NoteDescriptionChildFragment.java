@@ -55,18 +55,5 @@ public class NoteDescriptionChildFragment extends Fragment {
             EditText editName = view.findViewById(R.id.Name);
             editName.setText(note.getNoteName());
         }
-
-        view.findViewById(R.id.note_description_child_button_back_button)
-                .setOnClickListener(v -> {
-                    getParentFragmentManager().popBackStack();
-                    requireActivity().getSupportFragmentManager().popBackStack();
-                });
-        Log.d("Fragment ChildNoteDescription", "Start");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("Fragment ChildNoteDescription", "Finish");
     }
 }

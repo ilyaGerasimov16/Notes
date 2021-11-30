@@ -85,22 +85,5 @@ public class NoteDescriptionFragment extends Fragment {
             requireActivity().getSupportFragmentManager().popBackStack();
         });
 
-        view.findViewById(R.id.note_description_button_remove).setOnClickListener(v -> {
-            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-            List<Fragment> fragments = fragmentManager.getFragments();
-            for (Fragment fragment: fragments) {
-                if (fragment instanceof NoteDescriptionFragment && fragment.isVisible()) {
-                    fragmentManager.beginTransaction().remove(fragment).commit();
-                }
-            }
-        });
-
-        Log.d("Fragment NoteDescription", "Start");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("Fragment NoteDescription", "Finish");
     }
 }
