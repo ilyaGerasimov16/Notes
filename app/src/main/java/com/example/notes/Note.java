@@ -10,10 +10,17 @@ public final class Note implements Parcelable {
     //private final String description;
     //private final String date;
     private final int index;
+    private static int INDEX = 0;
 
     public Note(int index, String noteName) {
-        this.index = index;
+        this.index = INDEX++;
         this.noteName = noteName;
+
+    }
+
+    public Note() {
+        index = INDEX++;
+        this.noteName = "Название заметки " + INDEX;
 
     }
 

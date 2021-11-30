@@ -16,15 +16,10 @@ import android.widget.EditText;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NoteDescriptionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class NoteDescriptionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     static final String ARG_PARAM1 = "index";
 
 
@@ -32,17 +27,9 @@ public class NoteDescriptionFragment extends Fragment {
     private Note note;
 
     public NoteDescriptionFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param note Parameter 1.
-     * @return A new instance of fragment NoteDescriptionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static NoteDescriptionFragment newInstance(Note note) {
         NoteDescriptionFragment fragment = new NoteDescriptionFragment();
         Bundle args = new Bundle();

@@ -1,11 +1,6 @@
 package com.example.notes;
 
-import static com.example.notes.NoteDescriptionFragment.ARG_PARAM1;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,11 +11,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class NotesFragment extends Fragment {
+
+
+
+    ArrayList<Note> noteArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +34,6 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initList(view);
         Log.d("Fragment Notes", "Start");
     }
@@ -40,33 +41,39 @@ public class NotesFragment extends Fragment {
 
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
-        String[] notes = getResources().getStringArray(R.array.notes);
 
-        for (int i = 0; i< notes.length; i++) {
-            String noteName = notes[i];
+        noteArrayList.add(new Note());
+        noteArrayList.add(new Note());
+        noteArrayList.add(new Note());
+
+        for (int i = 0; i < noteArrayList.size(); i++) {
+            String noteName = noteArrayList.get(i).getNoteName();
             TextView tvNoteName = new TextView(getContext());
             tvNoteName.setText(noteName);
             tvNoteName.setTextSize(30);
             layoutView.addView(tvNoteName);
             final int position = i;
+
             tvNoteName.setOnClickListener(v -> {
                 Note currentNote = new Note(position, noteName);
                 showPortNote(currentNote);
             });
         }
+
+        Button buttonNew = view.findViewById(R.id.button_create_new_note);
+        buttonNew.setOnClickListener(v -> {
+            noteArrayList.add(new Note());
+            System.out.println(noteArrayList.size());
+        });
+
     }
 
-    private void showPortNote(Note note) {
+
+    private void showPortNote (Note note) {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragment_container, NoteDescriptionFragment.newInstance(note))
                 .addToBackStack("")
                 .commit();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("Fragment Notes", "Finish");
     }
 }
