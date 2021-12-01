@@ -6,20 +6,19 @@ import android.os.Parcelable;
 
 public final class Note implements Parcelable {
 
-    private final String noteName;
-    //private final String description;
-    //private final String date;
-    private final int index;
     private static int INDEX = 0;
+    private final String noteName;
+    private final int index;
 
-    public Note(int index, String noteName) {
+
+    public Note( String noteName) {
         this.index = INDEX++;
         this.noteName = noteName;
 
     }
 
     public Note() {
-        index = INDEX++;
+        this.index = INDEX++;
         this.noteName = "Название заметки " + INDEX;
 
     }

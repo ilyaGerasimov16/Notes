@@ -52,10 +52,9 @@ public class NotesFragment extends Fragment {
             tvNoteName.setText(noteName);
             tvNoteName.setTextSize(30);
             layoutView.addView(tvNoteName);
-            final int position = i;
 
             tvNoteName.setOnClickListener(v -> {
-                Note currentNote = new Note(position, noteName);
+                Note currentNote = new Note(noteName);
                 showPortNote(currentNote);
             });
         }
