@@ -8,5 +8,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="note_description_button_back_text">Back</string>
     <string name="notes_fragment_button_create_new_note">New</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
 
 </resources>
