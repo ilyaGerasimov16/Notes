@@ -10,5 +10,6 @@
     <string name="notes_fragment_button_create_new_note">New</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
+    <string name="about_application">О приложении</string>
 
 </resources>
