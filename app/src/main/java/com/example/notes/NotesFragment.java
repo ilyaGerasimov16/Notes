@@ -68,12 +68,7 @@ public class NotesFragment extends Fragment {
             tvNewNoteName.setTextSize(30);
             layoutView.addView(tvNewNoteName);
 
-            tvNewNoteName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    NotesFragment.this.showPortNote(newNote);
-                }
-            });
+            tvNewNoteName.setOnClickListener(view1 -> NotesFragment.this.showPortNote(newNote));
 
         });
 

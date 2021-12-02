@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -47,6 +50,7 @@ public class NoteDescriptionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_note_description, container, false);
     }
@@ -68,5 +72,15 @@ public class NoteDescriptionFragment extends Fragment {
         EditText editName = view.findViewById(R.id.Name);
         editName.setText(note.getNoteName());
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuItem item = menu.findItem(R.id.action_about);
+        if (item != null) {
+            item.setVisible(false);
+        }
+
+        menu.add(Menu.NONE, 20, Menu.NONE, "Item menu");
     }
 }
