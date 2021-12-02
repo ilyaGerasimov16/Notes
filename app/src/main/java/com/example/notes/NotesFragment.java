@@ -61,8 +61,20 @@ public class NotesFragment extends Fragment {
 
         Button buttonNew = view.findViewById(R.id.button_create_new_note);
         buttonNew.setOnClickListener(v -> {
-            noteArrayList.add(new Note());
-            System.out.println(noteArrayList.size());
+            Note newNote = new Note();
+            noteArrayList.add(newNote);
+            TextView tvNewNoteName = new TextView(getContext());
+            tvNewNoteName.setText(newNote.getNoteName());
+            tvNewNoteName.setTextSize(30);
+            layoutView.addView(tvNewNoteName);
+
+            tvNewNoteName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NotesFragment.this.showPortNote(newNote);
+                }
+            });
+
         });
 
     }
