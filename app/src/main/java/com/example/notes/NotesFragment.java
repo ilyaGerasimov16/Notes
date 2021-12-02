@@ -42,9 +42,6 @@ public class NotesFragment extends Fragment {
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
 
-        noteArrayList.add(new Note());
-        noteArrayList.add(new Note());
-        noteArrayList.add(new Note());
 
         for (int i = 0; i < noteArrayList.size(); i++) {
             String noteName = noteArrayList.get(i).getNoteName();

@@ -2,13 +2,11 @@ package com.example.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initToolbar();
+
         if (savedInstanceState == null) {
             NotesFragment notesFragment = new NotesFragment();
             getSupportFragmentManager()
@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, notesFragment)
                     .commit();
         }
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
