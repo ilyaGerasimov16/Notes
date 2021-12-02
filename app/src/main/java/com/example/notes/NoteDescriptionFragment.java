@@ -15,8 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.List;
-
 
 public class NoteDescriptionFragment extends Fragment {
 
@@ -55,14 +53,13 @@ public class NoteDescriptionFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_note_description, container, false);
     }
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (note == null) {
             return;
         }
+
 
         Button buttonBack = view.findViewById(R.id.note_description_button_back);
         buttonBack.setOnClickListener(v -> {
@@ -80,7 +77,6 @@ public class NoteDescriptionFragment extends Fragment {
         if (item != null) {
             item.setVisible(false);
         }
-
         menu.add(Menu.NONE, 20, Menu.NONE, "Item menu");
     }
 }

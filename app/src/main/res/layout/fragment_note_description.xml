@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:clickable="true"
     android:focusable="true"
     android:background="@color/teal_700"
     tools:context=".NoteDescriptionFragment">
+
 
     <Button
         android:id="@+id/note_description_button_back"
