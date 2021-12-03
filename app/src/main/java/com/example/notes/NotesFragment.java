@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -66,9 +67,13 @@ public class NotesFragment extends Fragment {
             layoutView.addView(tvNewNoteName);
 
             tvNewNoteName.setOnClickListener(view1 -> NotesFragment.this.showPortNote(newNote));
-
+            showNewNoteToast();
         });
 
+    }
+
+    private void showNewNoteToast() {
+        Toast.makeText(requireActivity(), "Создана новая заметка", Toast.LENGTH_SHORT).show();
     }
 
 
