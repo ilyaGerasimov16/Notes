@@ -2,10 +2,12 @@ package com.example.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,11 +54,26 @@ public class MainActivity extends AppCompatActivity {
                     drawer.closeDrawers();
                     return true;
                 case R.id.action_exit:
-                    finish();
+                    showExitAlertDialog();
                     return true;
             }
             return false;
         });
+    }
+
+    private void showExitAlertDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Выход из приложения")
+                .setMessage("Вы действительно хотите выйти?")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Нет", null)
+                .show();
+
     }
 
     @Override
@@ -73,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 openAboutFragment();
                 return true;
             case R.id.action_exit:
-                finish();
+                showExitAlertDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
