@@ -3,6 +3,7 @@ package com.example.notes;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -42,7 +43,6 @@ public class NotesFragment extends Fragment {
 
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
-
 
         for (int i = 0; i < noteArrayList.size(); i++) {
             String noteName = noteArrayList.get(i).getNoteName();

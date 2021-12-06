@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -82,5 +83,11 @@ public class MainActivity extends AppCompatActivity {
     private void openAboutFragment() {
         getSupportFragmentManager().beginTransaction().addToBackStack("")
                 .replace(R.id.fragment_container, new AboutFragment()).commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, "Приложение Notes закрылось", Toast.LENGTH_SHORT).show();
     }
 }
