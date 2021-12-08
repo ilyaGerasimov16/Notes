@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@color/teal_700"
+    tools:context=".NoteDescriptionFragment">
+
+
+    <Button
+        android:id="@+id/note_description_button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/note_field_margin"
+        android:layout_marginStart="@dimen/note_field_margin"
+        android:text="@string/note_description_button_back_text"
+        android:textSize="@dimen/note_name_text_size" />
+
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        android:inputType="textPersonName"
+        android:layout_margin="@dimen/note_field_margin"
+        android:text="@string/name"
+        android:textSize="@dimen/note_name_text_size" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_margin="@dimen/note_field_margin"
+        android:background="@color/design_default_color_surface"
+        android:text="@string/description"
+        android:textSize="@dimen/note_description_text_size"/>
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/note_field_margin"
+        android:background="@color/design_default_color_secondary"
+        android:text="@string/date"
+        android:textSize="@dimen/note_date_text_size"/>
+
+</LinearLayout>
