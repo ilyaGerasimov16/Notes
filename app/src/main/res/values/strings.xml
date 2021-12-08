@@ -8,5 +8,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="note_description_button_back_text">Back</string>
     <string name="notes_fragment_button_create_new_note">New</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="about_application">О приложении</string>
+    <string name="header">Header</string>
+    <string name="navigation_drawer_open">drawer open</string>
+    <string name="navigation_drawer_close">drawer close</string>
+    <string name="toast_text_on_exit_application">Приложение Notes закрылось</string>
+    <string name="toast_text_on_create_note">Создана новая заметка</string>
+    <string name="tittle_exit_alert_dialog">Выход из приложения</string>
+    <string name="message_exit_alert_dialog">Вы действительно хотите выйти?</string>
+    <string name="exit_alert_dialog_positive_button_text">Да</string>
+    <string name="exit_alert_dialog_negative_button_text">Нет</string>
 
 </resources>

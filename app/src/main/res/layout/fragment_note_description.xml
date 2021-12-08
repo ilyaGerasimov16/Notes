@@ -9,6 +9,7 @@
     android:background="@color/teal_700"
     tools:context=".NoteDescriptionFragment">
 
+
     <Button
         android:id="@+id/note_description_button_back"
         android:layout_width="wrap_content"

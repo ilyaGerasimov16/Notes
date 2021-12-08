@@ -3,6 +3,7 @@ package com.example.notes;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,10 +44,6 @@ public class NotesFragment extends Fragment {
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
 
-        noteArrayList.add(new Note());
-        noteArrayList.add(new Note());
-        noteArrayList.add(new Note());
-
         for (int i = 0; i < noteArrayList.size(); i++) {
             String noteName = noteArrayList.get(i).getNoteName();
             TextView tvNoteName = new TextView(getContext());
@@ -61,10 +59,21 @@ public class NotesFragment extends Fragment {
 
         Button buttonNew = view.findViewById(R.id.button_create_new_note);
         buttonNew.setOnClickListener(v -> {
-            noteArrayList.add(new Note());
-            System.out.println(noteArrayList.size());
+            Note newNote = new Note();
+            noteArrayList.add(newNote);
+            TextView tvNewNoteName = new TextView(getContext());
+            tvNewNoteName.setText(newNote.getNoteName());
+            tvNewNoteName.setTextSize(30);
+            layoutView.addView(tvNewNoteName);
+
+            tvNewNoteName.setOnClickListener(view1 -> NotesFragment.this.showPortNote(newNote));
+            showNewNoteToast();
         });
 
+    }
+
+    private void showNewNoteToast() {
+        Toast.makeText(requireActivity(), getString(R.string.toast_text_on_create_note), Toast.LENGTH_SHORT).show();
     }
 
 
