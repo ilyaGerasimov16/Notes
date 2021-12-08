@@ -2,13 +2,17 @@ package com.example.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -51,11 +55,26 @@ public class MainActivity extends AppCompatActivity {
                     drawer.closeDrawers();
                     return true;
                 case R.id.action_exit:
-                    finish();
+                    showExitAlertDialog();
                     return true;
             }
             return false;
         });
+    }
+
+    private void showExitAlertDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.tittle_exit_alert_dialog)
+                .setMessage(R.string.message_exit_alert_dialog)
+                .setPositiveButton(R.string.exit_alert_dialog_positive_button_text, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.exit_alert_dialog_negative_button_text, null)
+                .show();
+
     }
 
     @Override
@@ -72,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 openAboutFragment();
                 return true;
             case R.id.action_exit:
-                finish();
+                showExitAlertDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -82,5 +101,11 @@ public class MainActivity extends AppCompatActivity {
     private void openAboutFragment() {
         getSupportFragmentManager().beginTransaction().addToBackStack("")
                 .replace(R.id.fragment_container, new AboutFragment()).commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, getString(R.string.toast_text_on_exit_application), Toast.LENGTH_SHORT).show();
     }
 }
