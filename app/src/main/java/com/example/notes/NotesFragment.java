@@ -73,7 +73,7 @@ public class NotesFragment extends Fragment {
     }
 
     private void showNewNoteToast() {
-        Toast.makeText(requireActivity(), "Создана новая заметка", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), getString(R.string.toast_text_on_create_note), Toast.LENGTH_SHORT).show();
     }
 
 
