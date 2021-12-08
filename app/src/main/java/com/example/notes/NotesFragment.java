@@ -1,103 +1,87 @@
 package com.example.notes;
 
-import static com.example.notes.NoteDescriptionFragment.ARG_PARAM1;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class NotesFragment extends Fragment {
 
-    private static final String CURRENT_Note = "CurrentNote";
-    private int currentPosition = 0;
 
+
+    ArrayList<Note> noteArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_notes, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
-        if (savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(CURRENT_Note,0);
-        }
         initList(view);
-
-        if (Utils.isLandscape(getResources())) {
-            showLandNote(currentPosition);
-        }
-
+        Log.d("Fragment Notes", "Start");
     }
 
 
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
-        String[] notes = getResources().getStringArray(R.array.notes);
 
-        for (int i = 0; i< notes.length; i++) {
-            String note = notes[i];
+        for (int i = 0; i < noteArrayList.size(); i++) {
+            String noteName = noteArrayList.get(i).getNoteName();
             TextView tvNoteName = new TextView(getContext());
-            tvNoteName.setText(note);
+            tvNoteName.setText(noteName);
             tvNoteName.setTextSize(30);
             layoutView.addView(tvNoteName);
-            final int position = i;
+
             tvNoteName.setOnClickListener(v -> {
-                currentPosition = position;
-                showNote(position);
+                Note currentNote = new Note(noteName);
+                showPortNote(currentNote);
             });
         }
+
+        Button buttonNew = view.findViewById(R.id.button_create_new_note);
+        buttonNew.setOnClickListener(v -> {
+            Note newNote = new Note();
+            noteArrayList.add(newNote);
+            TextView tvNewNoteName = new TextView(getContext());
+            tvNewNoteName.setText(newNote.getNoteName());
+            tvNewNoteName.setTextSize(30);
+            layoutView.addView(tvNewNoteName);
+
+            tvNewNoteName.setOnClickListener(view1 -> NotesFragment.this.showPortNote(newNote));
+            showNewNoteToast();
+        });
+
     }
 
-    private void showNote(int position) {
-        if (Utils.isLandscape(getResources())) {
-            showLandNote(position);
-        } else {
-            showPortNote(position);
-        }
+    private void showNewNoteToast() {
+        Toast.makeText(requireActivity(), getString(R.string.toast_text_on_create_note), Toast.LENGTH_SHORT).show();
     }
 
-    private void showLandNote(int position) {
-        NoteDescriptionFragment noteDescriptionFragment =
-                NoteDescriptionFragment.newInstance(position);
+
+    private void showPortNote (Note note) {
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.noteDescriptionFragment_container, noteDescriptionFragment);
-        transaction.commit();
-    }
-
-    private void showPortNote(int position) {
-
-        Activity activity = requireActivity();
-        Intent intent = new Intent(activity, NoteDescriptionActivity.class);
-        intent.putExtra(ARG_PARAM1, position);
-        activity.startActivity(intent);
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CURRENT_Note, currentPosition);
-        super.onSaveInstanceState(outState);
+        transaction.add(R.id.fragment_container, NoteDescriptionFragment.newInstance(note))
+                .addToBackStack("")
+                .commit();
     }
 }
