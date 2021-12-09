@@ -43,28 +43,19 @@ public class NotesFragment extends Fragment {
 
     private void initList(View view) {
         LinearLayout layoutView = (LinearLayout) view;
+        LayoutInflater ltInflater = getLayoutInflater();
 
-        for (int i = 0; i < noteArrayList.size(); i++) {
-            String noteName = noteArrayList.get(i).getNoteName();
-            TextView tvNoteName = new TextView(getContext());
-            tvNoteName.setText(noteName);
-            tvNoteName.setTextSize(30);
-            layoutView.addView(tvNoteName);
-
-            tvNoteName.setOnClickListener(v -> {
-                Note currentNote = new Note(noteName);
-                showPortNote(currentNote);
-            });
-        }
 
         Button buttonNew = view.findViewById(R.id.button_create_new_note);
         buttonNew.setOnClickListener(v -> {
             Note newNote = new Note();
             noteArrayList.add(newNote);
-            TextView tvNewNoteName = new TextView(getContext());
+
+            View item = ltInflater.inflate(R.layout.item, layoutView, false);
+            TextView tvNewNoteName = item.findViewById(R.id.item_text_view);
+
             tvNewNoteName.setText(newNote.getNoteName());
-            tvNewNoteName.setTextSize(30);
-            layoutView.addView(tvNewNoteName);
+            layoutView.addView(item);
 
             tvNewNoteName.setOnClickListener(view1 -> NotesFragment.this.showPortNote(newNote));
             showNewNoteToast();
